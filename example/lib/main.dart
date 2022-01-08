@@ -39,22 +39,31 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Row(
         children: [
-          Flexible(
+          Expanded(
             child: Container(
               // height: double.infinity,
-              child: ListView(
+              child: Column(
                 children: [
-                  TextField(
-                    maxLines: 30,
-                    controller: controller,
+                  Expanded(
+                    child: TextField(
+                      // maxLines: 30,
+                      expands: true,
+                      maxLines: null,
+                      minLines: null,
+                      controller: controller,
+                    ),
                   ),
-                  ElevatedButton(
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 10),
+                    child: ElevatedButton(
                       onPressed: () {
                         setState(() {
                           json = controller.text;
                         });
                       },
-                      child: Text('Render'))
+                      child: Text('Render'),
+                    ),
+                  )
                 ],
               ),
             ),
@@ -63,7 +72,11 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Container(
               decoration:
                   BoxDecoration(border: Border.all(color: Colors.white)),
-              child: JSeenTree(json: json, key: ValueKey(json.hashCode)),
+              child: JSeenTree(
+                json: json,
+                key: ValueKey(json.hashCode),
+                indent: 20,
+              ),
             ),
           ),
         ],
