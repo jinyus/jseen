@@ -3,9 +3,9 @@ import 'package:jseen/constants.dart';
 
 class JSeenTheme {
   const JSeenTheme({
-    this.keyStyle = const TextStyle(color: Colors.orange),
-    this.doubleStyle = const TextStyle(color: Colors.blue),
-    this.intStyle = const TextStyle(color: Colors.blue),
+    this.keyStyle = const TextStyle(color: Colors.cyan),
+    this.doubleStyle = const TextStyle(color: Colors.pinkAccent),
+    this.intStyle = const TextStyle(color: Colors.lightGreen),
     this.boolStyle = const TextStyle(color: Colors.green),
     this.stringStyle = const TextStyle(color: Colors.amber),
     this.nullStyle = const TextStyle(color: Colors.redAccent),
