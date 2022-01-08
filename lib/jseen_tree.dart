@@ -80,41 +80,47 @@ class _JSeenTreeState extends State<JSeenTree> {
   Widget build(BuildContext context) {
     if (failed) return widget.errorWidget;
 
-    return EasyTreeView<Widget>(
-      nodes: nodes,
-      controller: treeController,
-      configuration: configuration,
-      callback: (node) {
-        if (!node.isLeaf) {
-          treeController.onClick(node);
-        }
-      },
-      itemBuilder: (BuildContext context, EasyTreeNode<Widget> node) {
-        Widget prefix = SizedBox(width: kIconSize);
-        Widget suffix = SizedBox.shrink();
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: SizedBox(
+        width: 5000,
+        child: EasyTreeView<Widget>(
+          nodes: nodes,
+          controller: treeController,
+          configuration: configuration,
+          callback: (node) {
+            if (!node.isLeaf) {
+              treeController.onClick(node);
+            }
+          },
+          itemBuilder: (BuildContext context, EasyTreeNode<Widget> node) {
+            Widget prefix = SizedBox(width: kIconSize);
+            Widget suffix = SizedBox.shrink();
 
-        if (!node.isLeaf) {
-          if (node.expanded) {
-            prefix = widget.theme.openIcon;
-          } else {
-            prefix = widget.theme.closeIcon;
-            suffix = Text(
-              " : " + (node.data as _CollapsableKey).collapsedInfo,
+            if (!node.isLeaf) {
+              if (node.expanded) {
+                prefix = widget.theme.openIcon;
+              } else {
+                prefix = widget.theme.closeIcon;
+                suffix = Text(
+                  " : " + (node.data as _CollapsableKey).collapsedInfo,
+                );
+              }
+            }
+
+            return Container(
+              child: Row(
+                children: [
+                  prefix,
+                  node.data,
+                  suffix,
+                ],
+              ),
+              margin: const EdgeInsets.only(left: 10),
             );
-          }
-        }
-
-        return Container(
-          child: Row(
-            children: [
-              prefix,
-              node.data,
-              suffix,
-            ],
-          ),
-          margin: const EdgeInsets.only(left: 10),
-        );
-      },
+          },
+        ),
+      ),
     );
   }
 
