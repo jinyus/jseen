@@ -12,7 +12,7 @@ import 'package:jseen/utils.dart';
 part 'collapsable_key.dart';
 
 class JSeenTree extends StatefulWidget {
-  const JSeenTree({
+  JSeenTree({
     Key? key,
     required this.json,
     this.shouldParse = true,
@@ -22,7 +22,15 @@ class JSeenTree extends StatefulWidget {
     this.errorWidget = kErrorWidget,
   })  : assert(json is String && shouldParse || json is! String && !shouldParse,
             "[shouldParse] must be true is [json] is a String\n[shouldParse] must be false if [json] is not a String"),
-        super(key: key);
+        super(
+            key: key ??
+                ValueKey(
+                  shouldParse.hashCode ^
+                      expandAll.hashCode ^
+                      json.hashCode ^
+                      indent.hashCode ^
+                      errorWidget.hashCode,
+                ));
 
   /// theme specifying how the json values should look
   final JSeenTheme theme;
