@@ -29,7 +29,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final controller = TextEditingController();
+  final controller = TextEditingController(text: jsonString);
   var json = jsonString;
 
   @override
