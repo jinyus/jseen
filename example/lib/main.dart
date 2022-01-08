@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jseen/jseen_tree.dart';
+import 'package:jseen/jseen.dart';
+import 'package:jseen/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -76,6 +77,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 json: json,
                 key: ValueKey(json.hashCode),
                 indent: 20,
+                errorWidget: Text('ERROR!!!'),
+                theme: JSeenTheme(
+                  keyStyle: TextStyle(color: Colors.purple.shade200),
+                  stringStyle: TextStyle(color: Colors.yellow),
+                ),
               ),
             ),
           ),
