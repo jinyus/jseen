@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easy_treeview/flutter_easy_treeview.dart';
 import 'package:jseen/constants.dart';
@@ -18,6 +19,7 @@ class JSeenTree extends StatefulWidget {
     this.expandAll = true,
     this.indent = 10,
     this.theme = const JSeenTheme(),
+    this.errorWidget = kErrorWidget,
   }) : super(key: key);
 
   /// theme specifying how the json values should look
@@ -34,6 +36,10 @@ class JSeenTree extends StatefulWidget {
   /// the object.
   final bool shouldParse;
 
+  /// This widget will be shown at the moment
+  /// when the package cannot handle the value.
+  final Widget errorWidget;
+
   final double indent;
 
   final bool expandAll;
@@ -47,11 +53,19 @@ class _JSeenTreeState extends State<JSeenTree> {
   late EasyTreeConfiguration configuration;
 
   late List<EasyTreeNode<Widget>> nodes;
+  bool failed = false;
   @override
   void initState() {
     super.initState();
-    final parsed = widget.shouldParse ? jsonDecode(widget.json) : widget.json;
-    nodes = [mapEntryToNode(parsed)];
+    try {
+      final parsed = widget.shouldParse ? jsonDecode(widget.json) : widget.json;
+      nodes = [mapEntryToNode(parsed)];
+    } catch (e, s) {
+      if (kDebugMode) {
+        print('encoding failed: $e\n$s');
+      }
+      failed = true;
+    }
 
     configuration = EasyTreeConfiguration(
       defaultExpandAll: widget.expandAll,
@@ -62,6 +76,8 @@ class _JSeenTreeState extends State<JSeenTree> {
 
   @override
   Widget build(BuildContext context) {
+    if (failed) return widget.errorWidget;
+
     return EasyTreeView<Widget>(
       nodes: nodes,
       controller: treeController,

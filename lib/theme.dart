@@ -14,8 +14,6 @@ class JSeenTheme {
       quarterTurns: 1,
       child: Icon(Icons.chevron_right, size: kIconSize),
     ),
-    this.errorWidget = const Text('error'),
-    this.loadingWidget = const CircularProgressIndicator(),
   });
 
   /// Style of json Object keys name displaying
@@ -41,12 +39,4 @@ class JSeenTheme {
 
   /// This icon is shown when the object's fields are shown
   final Widget openIcon;
-
-  /// This widget will be shown at the moment
-  /// when the package cannot handle the value.
-  final Widget errorWidget;
-
-  /// When loading data from a file, (web in future)
-  /// this widget will be shown at the time of processing
-  final Widget loadingWidget;
 }
