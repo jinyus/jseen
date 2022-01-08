@@ -51,13 +51,7 @@ class _JSeenTreeState extends State<JSeenTree> {
   void initState() {
     super.initState();
     final parsed = widget.shouldParse ? jsonDecode(widget.json) : widget.json;
-    if (parsed is Map) {
-      nodes = parsed.entries.map(mapEntryToNode).toList();
-    } else if (parsed is List) {
-      nodes = parsed.map(mapEntryToNode).toList();
-    } else {
-      nodes = [mapEntryToNode(parsed)];
-    }
+    nodes = [mapEntryToNode(parsed)];
 
     configuration = EasyTreeConfiguration(
       defaultExpandAll: widget.expandAll,

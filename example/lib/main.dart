@@ -13,15 +13,23 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'JSeen Demo',
       theme: ThemeData.dark(),
-      home: const MyHomePage(),
+      home: MyHomePage(),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({
+class MyHomePage extends StatefulWidget {
+  MyHomePage({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final controller = TextEditingController();
+  var json = jsonString;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +37,37 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Jseen Demo'),
       ),
-      body: JSeenTree(json: jsonString),
+      body: Row(
+        children: [
+          Flexible(
+            child: Container(
+              // height: double.infinity,
+              child: ListView(
+                children: [
+                  TextField(
+                    maxLines: 30,
+                    controller: controller,
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          json = controller.text;
+                        });
+                      },
+                      child: Text('Render'))
+                ],
+              ),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              decoration:
+                  BoxDecoration(border: Border.all(color: Colors.white)),
+              child: JSeenTree(json: json, key: ValueKey(json.hashCode)),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
