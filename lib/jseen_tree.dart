@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easy_treeview/flutter_easy_treeview.dart';
 import 'package:jseen/constants.dart';
 import 'package:jseen/theme.dart';
+import 'package:jseen/utils.dart';
+
+part 'collapsable_key.dart';
 
 class JSeenTree extends StatefulWidget {
   const JSeenTree({
@@ -153,44 +156,15 @@ class _JSeenTreeState extends State<JSeenTree> {
                   TextSpan(text: ': '),
                   TextSpan(
                       text: '${entry.value}',
-                      style: mapValueToStyle(entry.value)),
+                      style: mapValueToStyle(entry.value, widget.theme)),
                 ]),
           ),
         );
       }
     } else {
       return EasyTreeNode(
-        data: Text('$entry', style: mapValueToStyle(entry)),
+        data: Text('$entry', style: mapValueToStyle(entry, widget.theme)),
       );
     }
-  }
-
-  TextStyle mapValueToStyle(dynamic value) {
-    if (value is String) {
-      return widget.theme.stringStyle;
-    } else if (value is int) {
-      return widget.theme.intStyle;
-    } else if (value is double) {
-      return widget.theme.doubleStyle;
-    } else if (value is bool) {
-      return widget.theme.boolStyle;
-    } else {
-      return widget.theme.nullStyle;
-    }
-  }
-}
-
-class _CollapsableKey extends StatelessWidget {
-  final String collapsedInfo;
-  final Widget child;
-  const _CollapsableKey({
-    Key? key,
-    required this.collapsedInfo,
-    required this.child,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return child;
   }
 }
