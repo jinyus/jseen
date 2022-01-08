@@ -84,10 +84,8 @@ class _JSeenTreeState extends State<JSeenTree> {
       nodes: nodes,
       controller: treeController,
       configuration: configuration,
-      callback: (EasyTreeNode<Widget> node) {
-        if (node.isLeaf) {
-          treeController.select(node);
-        } else {
+      callback: (node) {
+        if (!node.isLeaf) {
           treeController.onClick(node);
         }
       },
