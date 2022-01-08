@@ -20,8 +20,10 @@ class JSeenTree extends StatefulWidget {
     this.indent = 10,
     this.theme = const JSeenTheme(),
     this.errorWidget = kErrorWidget,
-  })  : assert(json is String && shouldParse || json is! String && !shouldParse,
-            "[shouldParse] must be true is [json] is a String\n[shouldParse] must be false if [json] is not a String"),
+  })  : assert(
+            json is String && shouldParse || json is! String && !shouldParse,
+            "[shouldParse] must be true is [json] is a String\n"
+            "[shouldParse] must be false if [json] is not a String"),
         super(
             key: key ??
                 ValueKey(
