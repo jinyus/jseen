@@ -106,20 +106,15 @@ class _JSeenTreeState extends State<JSeenTree> {
           }
         }
 
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Container(
-              child: Row(
-                children: [
-                  prefix,
-                  node.data,
-                  suffix,
-                ],
-              ),
-              margin: const EdgeInsets.only(left: 10),
-            ),
-          ],
+        return Container(
+          child: Row(
+            children: [
+              prefix,
+              node.data,
+              suffix,
+            ],
+          ),
+          margin: const EdgeInsets.only(left: 10),
         );
       },
     );
