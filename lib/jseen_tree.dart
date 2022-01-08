@@ -140,8 +140,7 @@ class _JSeenTreeState extends State<JSeenTree> {
         return EasyTreeNode(
             data: _CollapsableKey(
               collapsedInfo: 'Object(${entry.value.length})',
-              child:
-                  SelectableText('${entry.key}', style: widget.theme.keyStyle),
+              child: Text('${entry.key}', style: widget.theme.keyStyle),
             ),
             children:
                 (entry.value as Map).entries.map(mapEntryToNode).toList());
@@ -149,8 +148,7 @@ class _JSeenTreeState extends State<JSeenTree> {
         return EasyTreeNode(
             data: _CollapsableKey(
               collapsedInfo: 'Array(${entry.value.length})',
-              child:
-                  SelectableText('${entry.key}', style: widget.theme.keyStyle),
+              child: Text('${entry.key}', style: widget.theme.keyStyle),
             ),
             children: (entry.value as List).map(mapEntryToNode).toList());
       } else {
