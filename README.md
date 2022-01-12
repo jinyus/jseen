@@ -9,7 +9,9 @@
 ### Add dependency to pubspec.yaml
 ```yaml
 dependencies:
-  jseen: ^1.0.0
+  jseen: 
+    git:
+      url: https://github.com/jinyus/jseen.git
 ```
 
 ### Import package
