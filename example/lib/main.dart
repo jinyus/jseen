@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jseen/jseen.dart';
-import 'package:jseen/theme.dart';
 
 void main() {
   runApp(const MyApp());
