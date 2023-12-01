@@ -1,25 +1,28 @@
 <center> <h1>JSEEN</h1> </center>
 
 ### Display JSON objects in a beautiful customizable flutter tree widget.
+
 #### Check out the flutter web demo here: <a href="http://solid-throne.surge.sh/#/">http://solid-throne.surge.sh/#/</a>
+
 <br>
 
 ## Usage
 
 ### Add dependency to pubspec.yaml
+
 ```yaml
 dependencies:
-  jseen: 
-    git:
-      url: https://github.com/jinyus/jseen.git
+    jseen:
 ```
 
 ### Import package
+
 ```dart
 import 'package:jseen/jseen_tree.dart';
 ```
 
 ### Use Widget
+
 ```dart
 JSeenTree(
     json: '{"name":"Bob"}'
@@ -27,6 +30,7 @@ JSeenTree(
 ```
 
 ### Customize
+
 ```dart
 JSeenTree(
     json: '{"name":"Bob"}',
